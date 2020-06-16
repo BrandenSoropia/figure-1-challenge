@@ -25,3 +25,9 @@ I'm also using [Yarn Classic](https://classic.yarnpkg.com/lang/en/).
 1. Clone this repo and navigate to its directory in terminal
 2. Build/serve app by running `expo start`. An Expo dashboard will open in your browser.
 3. In the dashboard's left panel, you can choose to run the app on the browser or, if setup, Expo's mobile simulators. If you installed the Expo client app to your phone, you can scan the QR code and run it directly to your device.
+
+**View UI Library Via Storybook:**
+
+You can look directly at the isolated components used to make this app using Storybook in-app!
+
+INSTRUCTIONS IN_DEV

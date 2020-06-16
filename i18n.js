@@ -13,7 +13,6 @@ i18n.use(initReactI18next).init({
   debug: true,
   resources,
   lng: "en",
-
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
