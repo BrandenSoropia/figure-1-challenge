@@ -1,17 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import StorybookUIRoot from "./storybook";
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>STILL WOKRING</Text>
-      <Text>STILL WOKRING</Text>
-      <StorybookUIRoot />
-    </View>
-  );
-}
+import { useTranslation } from "react-i18next";
+import "./i18n";
 
 const styles = StyleSheet.create({
   container: {
@@ -21,3 +12,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default function App() {
+  const { t } = useTranslation();
+  return (
+    <View style={styles.container}>
+      <Text>{t("WELCOME_TO_REACT")}</Text>
+      <Text>Open up App.js to start working on your app!</Text>
+      <StorybookUIRoot />
+    </View>
+  );
+}
