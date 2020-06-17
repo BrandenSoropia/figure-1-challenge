@@ -1,14 +1,17 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView, FlatList } from "react-native";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import Constants from "expo-constants";
+
+import Card from "./components/Card";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: Constants.statusBarHeight,
   },
 });
 
@@ -22,7 +25,17 @@ export default function Feed({ posts }) {
     );
   }
 
-  return <View style={styles.container}></View>;
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={posts}
+        renderItem={({ item: { caption, image, username } }) => (
+          <Card caption={caption} images={image} username={username} />
+        )}
+        keyExtractor={({ id }) => id}
+      />
+    </SafeAreaView>
+  );
 }
 
 Feed.propTypes = {

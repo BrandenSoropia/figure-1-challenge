@@ -17,8 +17,6 @@ export default function App() {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text>{t("WELCOME_TO_REACT")}</Text>
-      <Text>Open up App.js to start working on your app!</Text>
       <StorybookUIRoot />
     </View>
   );
