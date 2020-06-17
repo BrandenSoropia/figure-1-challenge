@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, View, Text, SafeAreaView, FlatList } from "react-native";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import Constants from "expo-constants";
 
 import Card from "./components/Card";
 
@@ -11,7 +10,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: Constants.statusBarHeight,
   },
 });
 

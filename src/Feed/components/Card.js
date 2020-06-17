@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import { Body, Heading } from "../../common/components";
 
@@ -8,13 +8,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderWidth: 1,
     borderRadius: 3,
-    // `elevation` enough for Android
-    elevation: 5,
-    // more control for iOS shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
   },
   caption: {
     paddingBottom: 8,
