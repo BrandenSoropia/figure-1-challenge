@@ -41,6 +41,13 @@ You can look directly at the isolated components used to make this app using Sto
 1. Run app on simulator or your phone using the above mentioned instructions.
 2. Click on the bug icon on the top bar (🐞) to toggle showing Storybook or the app!
 
+**To Developer With Storybook:**
+It's a little funky since React Native can't use dynamic imports to automatically find all stories. I've set it up to use a script to auto-generate a `storyLoader.js` file that'll have find all stories in `src/` folder everytime you run `yarn storybook`.
+
+It's super sketchy, I think, but does the job for now!
+
+So to generate an updated list of stories, run `yarn storybook`, once done, kill it (because it's not setup to work on web atm...). Refresh the app on your phone/simulator and it should have the latest stories!
+
 ## Nice To Haves
 
 1. Define a theme for easier styling consistency

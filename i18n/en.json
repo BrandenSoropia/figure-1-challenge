@@ -1,4 +1,7 @@
 {
   "WELCOME_TO_REACT": "Welcome to React and react-i18next",
-  "SORRY_NO_POSTS": "Sorry, there aren't any posts!"
+  "SORRY_NO_POSTS": "Sorry, there aren't any posts!",
+  "NUMBER_OF_FOLLOWS": "Follows:",
+  "NUMBER_OF_VIEWS": "Views:",
+  "NUMBER_OF_STARS": "Stars:"
 }

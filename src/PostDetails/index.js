@@ -1,55 +1,50 @@
 import React from "react";
+import { Heading, Body, UserDetails } from "../common/components";
 import { StyleSheet, View, Image } from "react-native";
 import PropTypes from "prop-types";
-import { Heading, UserDetails } from "../../common/components";
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-    borderWidth: 1,
-    borderRadius: 3,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   caption: {
     paddingBottom: 8,
   },
-  image: {
+  postImage: {
     height: "50%",
     width: "100%",
   },
-  userDetailsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingTop: 8,
-  },
-  profileImage: {
-    height: 32,
-    width: 32,
-    marginRight: 8,
-    borderRadius: 999,
-  },
 });
 
-export default function Card({ caption, images, username }) {
+export default function PostDetails({ caption, images, username, stats }) {
   return (
     <View style={styles.container}>
       <Heading style={styles.caption}>{caption}</Heading>
       {images.post && (
-        <Image style={styles.image} source={{ uri: images.post }} />
+        <Image style={styles.postImage} source={{ uri: images.post }} />
       )}
-      <UserDetails images={images} username={username} />
+      <UserDetails images={images} username={username} stats={stats} />
     </View>
   );
 }
 
-Card.propTypes = {
+PostDetails.propTypes = {
   caption: PropTypes.string.isRequired,
   images: PropTypes.shape({
     post: PropTypes.string,
     profile: PropTypes.string,
   }),
   username: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+    star: PropTypes.number.isRequired,
+    follow: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+  }),
 };
 
-Card.defaultProps = {
+PostDetails.defaultProps = {
   images: null,
+  stats: null,
 };
