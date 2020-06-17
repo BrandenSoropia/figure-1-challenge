@@ -38,8 +38,10 @@ You can use React Dev tools (run on your computer, not browser!) to inspect elem
 
 You can look directly at the isolated components used to make this app using Storybook in-app!
 
-INSTRUCTIONS IN_DEV
+1. Run app on simulator or your phone using the above mentioned instructions.
+2. Click on the bug icon on the top bar (🐞) to toggle showing Storybook or the app!
 
 ## Nice To Haves
 
 1. Define a theme for easier styling consistency
+2. Fix Storybook to fit entire device.
