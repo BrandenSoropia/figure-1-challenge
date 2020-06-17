@@ -15,9 +15,11 @@ const styles = StyleSheet.create({
   },
 });
 
+// TODO: Figure out why I can't fully scroll down!
 export default function Feed({ posts }) {
   const { t } = useTranslation();
-  if (!posts.length) {
+
+  if (!posts || !posts.length) {
     return (
       <View style={styles.container}>
         <Text>{t("SORRY_NO_POSTS")}</Text>
@@ -54,5 +56,9 @@ Feed.propTypes = {
         views: PropTypes.number,
       }),
     })
-  ).isRequired,
+  ),
+};
+
+Feed.defaultProps = {
+  posts: null,
 };
