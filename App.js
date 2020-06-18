@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import StorybookUIRoot from "./storybook";
+// Magic things that must be on top of entry file
+import "react-native-gesture-handler";
 import "./i18n";
-import getFeed from "./src/services/get-feed";
-import Constants from "expo-constants";
 
-import TopBar from "./src/TopBar";
+import React from "react";
+import { Button } from "react-native";
+import StorybookUIRoot from "./storybook";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import Feed from "./src/Feed";
+import PostDetails from "./src/PostDetails";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-    marginTop: Constants.statusBarHeight,
-  },
-  loadingText: {
-    marginTop: 8,
-  },
-});
+const Stack = createStackNavigator();
 
 /**
  * Shows app and each component via Storybook.
@@ -28,58 +18,31 @@ const styles = StyleSheet.create({
  * Note, Storybook needs some deeper configuration to take up the whole
  * device screen.
  */
+
+// TODO: Figure out navigation. Should I just pass params via Navigation or using state?
+// Potentially re-arrange Home/Feed since they are the same thing! Depends on how I store the API response data
 export default function App() {
-  const [showStorybook, setShowStoryBook] = useState(false);
-  const [feed, setFeed] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  useEffect(() => {
-    getFeed().then(({ errorMessage, feed: feedData }) => {
-      if (!errorMessage) {
-        setFeed(feedData);
-      } else {
-        setErrorMessage(errorMessage);
-      }
-      setIsLoading(false);
-    });
-  }, [setFeed, setErrorMessage, setIsLoading]);
-
-  const hasReceivedResponse = !isLoading && feed !== null && !errorMessage;
-
-  // Nasty way of showing Storybook or actual app. Needs clean up!
-  if (showStorybook) {
-    return (
-      <View style={styles.container}>
-        <TopBar
-          toggleStoriesDisplay={() => {
-            setShowStoryBook(!showStorybook);
-          }}
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Feed">
+        {/* Seems the headerRight is applies on all screens... Not sure why atm! */}
+        <Stack.Screen
+          name="Feed"
+          component={Feed}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <Button
+                onPress={() => navigation.navigate("Storybook")}
+                title="🐞"
+                color="#fff"
+                accessibilityLabel="Toggle Storybook Display"
+              />
+            ),
+          })}
         />
-        <StorybookUIRoot />
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        <TopBar
-          toggleStoriesDisplay={() => {
-            setShowStoryBook(!showStorybook);
-          }}
-        />
-        {isLoading && (
-          <>
-            <ActivityIndicator size="large" color="#0000ff" />
-            <Text style={styles.loadingText}>Loading...</Text>
-          </>
-        )}
-        {hasReceivedResponse && (
-          <>
-            <Feed posts={feed.posts} />
-          </>
-        )}
-        {errorMessage && <Text>{errorMessage}</Text>}
-      </View>
-    );
-  }
+        <Stack.Screen name="PostDetails" component={PostDetails} />
+        <Stack.Screen name="Storybook" component={StorybookUIRoot} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

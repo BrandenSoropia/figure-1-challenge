@@ -23,16 +23,16 @@ I'm also using [Yarn Classic](https://classic.yarnpkg.com/lang/en/).
 **How to Run Locally:**
 
 1. Clone this repo and navigate to its directory in terminal
-2. Build/serve app by running `expo start`. An Expo dashboard will open in your browser.
+2. Build/serve app by running `yarn start`. An Expo dashboard will open in your browser.
 3. In the dashboard's left panel, you can choose to run the app on the browser or, if setup, Expo's mobile simulators. If you installed the Expo client app to your phone, you can scan the QR code and run it directly to your device.
 
 You can use React Dev tools (run on your computer, not browser!) to inspect elements. You will need to do the following:
 
-1. Install devtools globally by running `npm install -g react-devtools@^3` in terminal. It needs version 3 since [Expo37 is running React Native 0.61](https://docs.expo.io/versions/latest/), and [devtools 4 needs 0.62+](https://reactnative.dev/docs/debugging#react-developer-tools).
+1. Install dev tools globally by running `npm install -g react-devtools@^3` in terminal. It needs version 3 since [Expo37 is running React Native 0.61](https://docs.expo.io/versions/latest/), and [devtools 4 needs 0.62+](https://reactnative.dev/docs/debugging#react-developer-tools).
 2. Run app in a simulator (not Expo client!).
 3. Start dev tools by running `react-devtools` in your terminal.
 4. Trigger "shake" gesture in simulator. For iOS, that's done by pressing `Cmd + Control + Z` or `Device > Shake`. Click "Reload" and it should be connected!
-5. You might have to reshake and click "Show Element Inspector" to actually inspect elements.
+5. You might have to re "shake" and click "Show Element Inspector" to actually inspect elements.
 
 **View UI Library Via Storybook:**
 
@@ -41,12 +41,10 @@ You can look directly at the isolated components used to make this app using Sto
 1. Run app on simulator or your phone using the above mentioned instructions.
 2. Click on the bug icon on the top bar (🐞) to toggle showing Storybook or the app!
 
-**To Developer With Storybook:**
-It's a little funky since React Native can't use dynamic imports to automatically find all stories. I've set it up to use a script to auto-generate a `storyLoader.js` file that'll have find all stories in `src/` folder everytime you run `yarn storybook`.
+**To Develope With Storybook:**
+It's a little funky since React Native can't use dynamic imports to automatically find all stories. I've set it up to use a script to auto-generate a `storyLoader.js` file that'll have find all stories in `src/` folder every time you run `yarn prestorybook`. (this will run when `yarn storybook` is called too)
 
-It's super sketchy, I think, but does the job for now!
-
-So to generate an updated list of stories, run `yarn storybook`, once done, kill it (because it's not setup to work on web atm...). Refresh the app on your phone/simulator and it should have the latest stories!
+It's super sketchy, I think, but does the job for now! Refresh the app on your phone/simulator and it should have the latest stories!
 
 ## Nice To Haves
 

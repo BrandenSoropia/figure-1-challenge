@@ -5,6 +5,7 @@ import { Heading, UserDetails } from "../../common/components";
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     padding: 16,
     borderWidth: 1,
     borderRadius: 3,

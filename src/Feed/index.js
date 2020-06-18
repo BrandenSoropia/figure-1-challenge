@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, FlatList } from "react-native";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
+import { View, ActivityIndicator } from "react-native";
+import { Body } from "../common/components";
 import { useTranslation } from "react-i18next";
-
-import Card from "./components/Card";
+import getFeed from "../services/get-feed";
+import Feed from "./Feed";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,50 +13,36 @@ const styles = StyleSheet.create({
   },
 });
 
-// TODO: Figure out why I can't fully scroll down!
-export default function Feed({ posts }) {
+/**
+ * Container for Feed that handles fetching data, showing loading and displaying errors.
+ */
+export default function FeedContainer() {
   const { t } = useTranslation();
+  const [posts, setPosts] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  if (!posts || !posts.length) {
-    return (
-      <View style={styles.container}>
-        <Text>{t("SORRY_NO_POSTS")}</Text>
-      </View>
-    );
-  }
+  useEffect(() => {
+    getFeed().then(({ errorMessage, feed }) => {
+      if (!errorMessage) {
+        setPosts(feed.posts);
+      } else {
+        setErrorMessage(errorMessage);
+      }
+      setIsLoading(false);
+    });
+  }, [setPosts, setErrorMessage, setIsLoading]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={posts}
-        renderItem={({ item: { caption, image, username } }) => (
-          <Card caption={caption} images={image} username={username} />
-        )}
-        keyExtractor={({ id }) => id}
-      />
-    </SafeAreaView>
+    <View>
+      {isLoading && (
+        <>
+          <ActivityIndicator size="large" color="#0000ff" />
+          <Body style={styles.loadingText}>{t("LOADING")}</Body>
+        </>
+      )}
+      {!isLoading && <Feed posts={posts} />}
+      {errorMessage && <Body>{errorMessage}</Body>}
+    </View>
   );
 }
-
-Feed.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      username: PropTypes.string,
-      caption: PropTypes.string,
-      image: PropTypes.shape({
-        profile: PropTypes.string,
-        post: PropTypes.string,
-      }),
-      stats: PropTypes.shape({
-        star: PropTypes.number,
-        follow: PropTypes.number,
-        views: PropTypes.number,
-      }),
-    })
-  ),
-};
-
-Feed.defaultProps = {
-  posts: null,
-};

@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Feed from "./";
+import Feed from "./Feed";
 import { mockPosts } from "../__mocks__/mock-feed";
 
 storiesOf("Feed", module)
