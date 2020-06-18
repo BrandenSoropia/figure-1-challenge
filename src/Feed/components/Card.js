@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
 import { Heading, UserDetails } from "../../common/components";
 
@@ -30,15 +30,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Card({ caption, images, username }) {
+export default function Card({ caption, images, username, viewPost }) {
   return (
-    <View style={styles.container}>
-      <Heading style={styles.caption}>{caption}</Heading>
-      {images.post && (
-        <Image style={styles.image} source={{ uri: images.post }} />
-      )}
-      <UserDetails images={images} username={username} />
-    </View>
+    <TouchableHighlight
+      activeOpacity={0.6}
+      underlayColor="#DDDDDD"
+      onPress={viewPost}
+    >
+      <View style={styles.container}>
+        <Heading style={styles.caption}>{caption}</Heading>
+        {images.post && (
+          <Image style={styles.image} source={{ uri: images.post }} />
+        )}
+        <UserDetails images={images} username={username} />
+      </View>
+    </TouchableHighlight>
   );
 }
 
@@ -49,6 +55,7 @@ Card.propTypes = {
     profile: PropTypes.string,
   }),
   username: PropTypes.string.isRequired,
+  viewPost: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {

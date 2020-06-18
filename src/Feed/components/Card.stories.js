@@ -2,8 +2,11 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import Card from "./Card";
 
+const mockViewPost = () => {
+  alert("Should go to a post!");
+};
 storiesOf("Card", module)
-  .add("with image", () => (
+  .add("with post image", () => (
     <Card
       caption="A Rare Phenomenon"
       images={{
@@ -13,9 +16,10 @@ storiesOf("Card", module)
           "https://images.unsplash.com/profile-1532466997843-88fe931a8056?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       }}
       username="bsoropia"
+      viewPost={mockViewPost}
     />
   ))
-  .add("without image", () => (
+  .add("without post image", () => (
     <Card
       caption="A Rare Phenomenon"
       images={{
@@ -23,5 +27,6 @@ storiesOf("Card", module)
           "https://images.unsplash.com/profile-1532466997843-88fe931a8056?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       }}
       username="bsoropia"
+      viewPost={mockViewPost}
     />
   ));

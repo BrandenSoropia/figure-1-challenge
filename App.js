@@ -18,14 +18,11 @@ const Stack = createStackNavigator();
  * Note, Storybook needs some deeper configuration to take up the whole
  * device screen.
  */
-
-// TODO: Figure out navigation. Should I just pass params via Navigation or using state?
-// Potentially re-arrange Home/Feed since they are the same thing! Depends on how I store the API response data
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Feed">
-        {/* Seems the headerRight is applies on all screens... Not sure why atm! */}
+        {/* Seems the headerRight is applied on all screens... Not sure why atm! */}
         <Stack.Screen
           name="Feed"
           component={Feed}

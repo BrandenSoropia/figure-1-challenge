@@ -18,7 +18,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function PostDetails({ caption, images, username, stats }) {
+/**
+ * Display post details when a card is clicked from Feed.
+ *
+ * Right now, it gets the data needed to populate the page directly from passed params
+ * from the card click.
+ *
+ * Improvement: Instead of passing the clicked post's data directly to PostDetails,
+ * it'd be good to fetch the selected post's details again in case there are new updates
+ * (like a new star, a new comment etc...).
+ */
+export default function PostDetails({ route }) {
+  const { caption, images, username, stats } = route.params;
+
   return (
     <View style={styles.container}>
       <Heading style={styles.caption}>{caption}</Heading>
@@ -31,20 +43,19 @@ export default function PostDetails({ caption, images, username, stats }) {
 }
 
 PostDetails.propTypes = {
-  caption: PropTypes.string.isRequired,
-  images: PropTypes.shape({
-    post: PropTypes.string,
-    profile: PropTypes.string,
-  }),
-  username: PropTypes.string.isRequired,
-  stats: PropTypes.shape({
-    star: PropTypes.number.isRequired,
-    follow: PropTypes.number.isRequired,
-    views: PropTypes.number.isRequired,
-  }),
-};
-
-PostDetails.defaultProps = {
-  images: null,
-  stats: null,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      caption: PropTypes.string.isRequired,
+      images: PropTypes.shape({
+        post: PropTypes.string,
+        profile: PropTypes.string,
+      }),
+      username: PropTypes.string.isRequired,
+      stats: PropTypes.shape({
+        star: PropTypes.number.isRequired,
+        follow: PropTypes.number.isRequired,
+        views: PropTypes.number.isRequired,
+      }),
+    }),
+  }).isRequired,
 };

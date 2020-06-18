@@ -5,7 +5,10 @@ const sortFeedData = (data) => {
   return data.reduce(
     (feed, item) => {
       if (item.type === POST) {
-        feed.posts.push(item);
+        // Note: Found it easier to remember image contained post/profile if I renamed it to plural form!
+        const { image: images, ...rest } = item;
+
+        feed.posts.push({ ...rest, images });
       } else if (item.type === COMMENT) {
         feed.comments.push(item);
       }

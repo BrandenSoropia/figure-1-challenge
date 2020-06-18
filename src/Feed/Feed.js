@@ -1,12 +1,26 @@
 import React from "react";
-import { SafeAreaView, FlatList } from "react-native";
+import { StyleSheet, View, SafeAreaView, FlatList } from "react-native";
 import { Body } from "../common/components";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import Card from "./components/Card";
 
-// TODO: Figure out why I can't fully scroll down!
-export default function Feed({ posts }) {
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 8,
+  },
+});
+
+/**
+ * Display all posts in a scrollable list.
+ *
+ * Improvement: Instead of passing the clicked post's data directly to PostDetails,
+ * it'd be good to fetch the selected post's details again in case there are new updates
+ * (like a new star, a new comment etc...).
+ *
+ * TODO: Figure out why I can't fully scroll down!
+ */
+export default function Feed({ posts, navigation }) {
   const { t } = useTranslation();
 
   if (posts === null) {
@@ -14,18 +28,32 @@ export default function Feed({ posts }) {
   }
 
   return (
-    <SafeAreaView>
+    <View style={styles.container}>
       {posts.length >= 1 && (
-        <FlatList
-          data={posts}
-          renderItem={({ item: { caption, image, username } }) => (
-            <Card caption={caption} images={image} username={username} />
-          )}
-          keyExtractor={({ id }) => id}
-        />
+        <SafeAreaView>
+          <FlatList
+            data={posts}
+            renderItem={({ item: { caption, images, username, stats } }) => (
+              <Card
+                caption={caption}
+                images={images}
+                username={username}
+                viewPost={() => {
+                  navigation.navigate("PostDetails", {
+                    caption,
+                    images,
+                    username,
+                    stats,
+                  });
+                }}
+              />
+            )}
+            keyExtractor={({ id }) => id}
+          />
+        </SafeAreaView>
       )}
       {posts.length === 0 && <Body>{t("SORRY_NO_POSTS")}</Body>}
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -46,6 +74,7 @@ Feed.propTypes = {
       }),
     })
   ),
+  navigation: PropTypes.shape({}.isRequired),
 };
 
 Feed.defaultProps = {
