@@ -53,8 +53,9 @@ It's super sketchy, I think, but does the job for now! Refresh the app on your p
 
 1. Test navigating from post to post details and back via React testing library (ran out of time...)
 2. Re-fetch feed/post data to make sure that when a user clicks a post to view its details, it'd have the most up-to-date version.
-3. Define a theme for easier styling consistency
-4. Separate common components into primitives (`Body` and `Heading` only atm), and "compound components" (`UserDetails`)
+3. Figure out why the feed won't fully scroll down!
+4. Define a theme for easier styling consistency
+5. Separate common components into primitives (`Body` and `Heading` only atm), and "compound components" (`UserDetails`)
 
 ## Why I Used Certain Technologies
 
