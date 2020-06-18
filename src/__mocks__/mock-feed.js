@@ -100,14 +100,15 @@ export const mockRawFeed = [
   },
 ];
 
-export const mockPosts = [
+// Note: this is mocking posts after `image` has been renamed to `images`
+export const mockFormattedPosts = [
   {
     id: "5a1edb556384ec96b71d4a98",
     username: "catc",
     type: "post",
     caption:
       "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas",
-    image: {
+    images: {
       profile:
         "https://images.unsplash.com/profile-1532466997843-88fe931a8056?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       post:
@@ -125,7 +126,7 @@ export const mockPosts = [
     type: "post",
     caption:
       "consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas",
-    image: {
+    images: {
       profile:
         "https://images.unsplash.com/profile-1518819819358-613688503959?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       post:
@@ -143,7 +144,7 @@ export const mockPosts = [
     type: "post",
     caption:
       "aut dicta possimus sint mollitia voluptas commodi quo doloremque\niste corrupti reiciendis voluptatem eius rerum\nsit cumque quod eligendi laborum minima\nperferendis recusandae assumenda consectetur porro architecto ipsum ipsam",
-    image: {
+    images: {
       profile:
         "https://images.unsplash.com/profile-1504441128329-507ccc493342?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       post:
@@ -161,7 +162,7 @@ export const mockPosts = [
     type: "post",
     caption:
       "eos voluptas et aut odit natus earum\naspernatur fuga molestiae ullam\ndeserunt ratione qui eos\nqui nihil ratione nemo velit ut aut id quo",
-    image: {
+    images: {
       profile:
         "https://images.unsplash.com/profile-1516018438351-17e6ea42c457?dpr=1&auto=format&fit=crop&w=64&h=64&q=60&crop=faces&bg=fff",
       post:

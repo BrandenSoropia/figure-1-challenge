@@ -1,7 +1,7 @@
 import { POST, COMMENT } from "../common/constants";
 
-// Separate comments from posts.
-const sortFeedData = (data) => {
+// Separate comments from posts and rename `image` to `images`
+export const sortFeedData = (data) => {
   return data.reduce(
     (feed, item) => {
       if (item.type === POST) {
